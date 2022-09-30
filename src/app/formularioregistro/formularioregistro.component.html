@@ -1,162 +1,195 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-md-8">
-      <form>
-        <div class="row">
-          <div class="col-12">
-            <h2>Ingreso Mercancia</h2>
+<form class="w-100 my-5" [formGroup]="formulario" (ngSubmit)="analizarFormulario()">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <form>
+          <div class="row">
+            <div class="col-12">
+              <h2>Ingreso Mercancia</h2>
+              <hr>
+            </div>
+          </div>
+          <div class="mb-3 my-3">
+            <label class="form-label">IUP</label>
+            <input type="text" class="form-control" formControlName="iup">
+          </div>
+
+          <div *ngIf="formulario.get('iup')?.touched && formulario.get('iup')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+
+          <div *ngIf="formulario.get('iup')?.touched && formulario.get('iup')?.errors?.['minlength']" class="form-text my-3 text-danger fw-bold">Este campo debe tener 6 caracteres</div>
+
+          <div class="mb-3">
+            <h4>Remitente:</h4>
             <hr>
+            <label for="form-label">Tipo de Remitente:</label>
+            <select class="form-select" aria-label=".Default select example" formControlName="tiporemitente">
+              <option value="1">Empresa</option>
+              <option value="2">Persona Natural</option>
+            </select>
           </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">IUP</label>
-          <input type="text" class="form-control" id="exampleInputEmail1">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div>
 
-        <div class="mb-3">
-          <h4>Remitente:</h4>
+          <div *ngIf="formulario.get('tiporemitente')?.touched && formulario.get('tiporemitente')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-6">
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="bi bi-key"></i>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Identificación" formControlName="idremitente">
+                 
+                </div>
+              </div>
+
+              <div *ngIf="formulario.get('idremitente')?.touched && formulario.get('idremitente')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+
+              <div class="col-6">
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="bi bi-person-circle"></i>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Nombre" formControlName="nombreremitente">
+                </div>
+              </div>
+              <div *ngIf="formulario.get('nombreremitente')?.touched && formulario.get('nombreremitente')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+            </div>
+          </div>
+
+
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-6">
+                <select class="form-select" aria-label="Disabled select example" formControlName="deptoremitente">
+                  <option selected>Departamento</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+
+              <div *ngIf="formulario.get('deptoremitente')?.touched && formulario.get('deptoremitente')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+
+              <div class="col-6 mb-3">
+                <select class="form-select" aria-label="Disabled select example" formControlName="municipioremitente">
+                  <option selected>Municipio</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+
+              <div *ngIf="formulario.get('municipioremitente')?.touched && formulario.get('municipioremitente')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+
+              <div class="mb-3">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="bi bi-geo-alt"></i>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Dirección" formControlName="direcremitente">
+                </div>
+              </div>
+              <div *ngIf="formulario.get('direcremitente')?.touched && formulario.get('direcremitente')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <h4>Destinatario:</h4>
+            <hr>
+            <label for="form-label">Tipo de Remitente:</label>
+            <select class="form-select" aria-label=".Default select example" formControlName="tipodestinatario">
+              <option value="1">Empresa</option>
+              <option value="2">Persona Natural</option>
+            </select>
+          </div>
+          <div *ngIf="formulario.get('tipodestinatario')?.touched && formulario.get('tipodestinatario')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-6">
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="bi bi-key"></i>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Identificación" formControlName="iddestinatario">
+                </div>
+
+                <div *ngIf="formulario.get('iddestinatario')?.touched && formulario.get('iddestinatario')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+
+              </div>
+              <div class="col-6">
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="bi bi-person-circle"></i>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Nombre" formControlName="nombredestinatario">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="formulario.get('nombredestinatario')?.touched && formulario.get('nombredestinatario')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+
+          <div class="mb-3">
+            <div class="row">
+              <div class="col-6">
+                <select class="form-select" aria-label="Disabled select example" formControlName="deptodestinatario">
+                  <option selected>Departamento</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+
+              <div *ngIf="formulario.get('deptodestinatario')?.touched && formulario.get('deptodestinatario')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+
+              <div class="col-6 mb-3">
+                <select class="form-select" aria-label="Disabled select example" formControlName="municipiodestinatario">
+                  <option selected>Municipio</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+
+              <div *ngIf="formulario.get('municipiodestinatario')?.touched && formulario.get('municipiodestinatario')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+
+              <div class="mb-3">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">
+                    <i class="bi bi-geo-alt"></i>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Dirección" formControlName="direcdestinatario">
+                </div>
+              </div>
+
+              <div *ngIf="formulario.get('direcdestinatario')?.touched && formulario.get('direcdestinatario')?.errors?.['required']" class="form-text my-3 text-danger fw-bold">Este campo es obligatorío</div>
+
+            </div>
+          </div>
+
+          <h4 class="my-3">Ubicación en Cuarto</h4>
           <hr>
-          <label for="form-label">Tipo de Remitente:</label>
-          <select class="form-select" aria-label=".Default select example">
-            <option value="1">Empresa</option>
-            <option value="2">Persona Natural</option>
-          </select>
-        </div>
 
-        <div class="mb-3">
-          <div class="row">
-            <div class="col-6">
-
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">
-                  <i class="bi bi-key"></i>
-                </span>
-                <input type="text" class="form-control" placeholder="Identificación">
-              </div>
-
-            </div>
-            <div class="col-6">
-
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">
-                  <i class="bi bi-person-circle"></i>
-                </span>
-                <input type="text" class="form-control" placeholder="Nombre">
-              </div>
-            </div>
+          <div class="mb-3">
+            <select class="form-select" aria-label="Disabled select example">
+              <option selected>Zona: </option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
           </div>
-        </div>
 
-        <div class="mb-3">
-          <div class="row">
-            <div class="col-6">
-              <select class="form-select" aria-label="Disabled select example">
-                <option selected>Departamento</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-            <div class="col-6 mb-3">
-              <select class="form-select" aria-label="Disabled select example">
-                <option selected>Municipio</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
+          <button type="submit" class="btn btn-warning w-100">Registrar</button>
 
-            <div class="mb-3">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">
-                  <i class="bi bi-geo-alt"></i>
-                </span>
-                <input type="text" class="form-control" placeholder="Dirección">
-              </div>
-            </div>
+        </form>
 
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <h4>Destinatario:</h4>
-          <hr>
-          <label for="form-label">Tipo de Remitente:</label>
-          <select class="form-select" aria-label=".Default select example">
-            <option value="1">Empresa</option>
-            <option value="2">Persona Natural</option>
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <div class="row">
-            <div class="col-6">
-
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">
-                  <i class="bi bi-key"></i>
-                </span>
-                <input type="text" class="form-control" placeholder="Identificación">
-              </div>
-
-            </div>
-            <div class="col-6">
-
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">
-                  <i class="bi bi-person-circle"></i>
-                </span>
-                <input type="text" class="form-control" placeholder="Nombre">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <div class="row">
-            <div class="col-6">
-              <select class="form-select" aria-label="Disabled select example">
-                <option selected>Departamento</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-            <div class="col-6 mb-3">
-              <select class="form-select" aria-label="Disabled select example">
-                <option selected>Municipio</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">
-                  <i class="bi bi-geo-alt"></i>
-                </span>
-                <input type="text" class="form-control" placeholder="Dirección">
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <select class="form-select" aria-label="Disabled select example">
-            <option selected>Zona: </option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn btn-warning">Registrar</button>
-
-      </form>
-
+      </div>
     </div>
   </div>
-</div>
+</form>
